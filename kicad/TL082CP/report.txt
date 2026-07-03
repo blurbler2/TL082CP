@@ -1,0 +1,27 @@
+Info: Total warnings: 3, errors: 1.
+Info: Processing symbol 'C2:Capacitor_THT:CP_Radial_D5.0mm_P2.00mm'.
+Info: Processing symbol 'C3:Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm'.
+Info: Processing symbol 'C4:Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm'.
+Info: Processing symbol 'J1:Connector_Audio:Jack_6.35mm_Neutrik_NMJ4HCD2_Horizontal'.
+Info: Processing symbol 'J2:Connector_Audio:Jack_6.35mm_Neutrik_NMJ4HCD2_Horizontal'.
+Info: Processing symbol 'J4:Connector_BarrelJack:BarrelJack_SwitchcraftConxall_RAPC10U_Horizontal'.
+Info: Processing symbol 'R1:Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal'.
+Info: Processing symbol 'R3:PT01-D130D-B503:TRIM_PT01-D130D-B503'.
+Info: Processing symbol 'U1:Converter_DCDC:Converter_DCDC_TRACO_TMR-1-xxxx_Dual_THT'.
+Info: Processing symbol 'U2:1_own_TL082CP:P8_TEX'.
+Info: Processing symbol 'C1:Capacitor_THT:CP_Radial_D5.0mm_P2.00mm'.
+Remove unused footprint H1.
+Remove unused footprint H3.
+Remove unused footprint .
+Remove unused footprint .
+Remove unused footprint H2.
+Remove unused footprint H4.
+
+
+Warning: No net found for component U2 pad 7 (no pin 7 in symbol).
+Warning: No net found for component U2 pad 5 (no pin 5 in symbol).
+Warning: No net found for component U2 pad 6 (no pin 6 in symbol).
+Error: Cannot add R3 (footprint 'PT01-D130D-B503:TRIM_PT01-D130D-B503' not found).
+
+
+Info: Total warnings: 3, errors: 1.

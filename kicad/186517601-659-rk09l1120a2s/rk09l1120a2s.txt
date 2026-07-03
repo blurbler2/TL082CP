@@ -1,0 +1,10 @@
+﻿"Symbol";"Value";"Unit";
+"TraceParts.PartNumber";"10-04022015-103834";"";
+"REFERENCE";"RK09L1120A2S";"";
+"TraceParts.PartTitle";"Alps Logarithmic Potentiometer with a 6 mm Dia. Shaft, 10kΩ, ±20%, 0.05W RK09L1120A2S";"";
+"TraceParts.InstanceId";"10-04022015-1038344AS6ERYQYUKQT00LLFE5Q267C";"";
+"SUPPLIER";"ALPS";"";
+"DESIGN";"Alps Logarithmic Potentiometer with a 6 mm Dia. Shaft, 10kΩ, ±20%, 0.05W RK09L1120A2S";"";
+"TRACEPARTS";"TRACEPARTS";"";
+"TraceParts.PartLanguage";"en";"";
+"TraceParts.PartVersion";"1.0.6";"";

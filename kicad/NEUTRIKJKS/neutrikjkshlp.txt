@@ -1,0 +1,45 @@
+
+3d Models Neutrik 1-4" Mono/Stereo Jacks
+
+Download and Unzip Foldername: NEUTRIKJKS.zip
+
+Open this instructions help text file:
+neutrikjkshlp.txt
+
+==========
+
+3D MODEL WRL/STP FILES
+Copy Foldername: Audio_Extra.3dshapes
+To --->
+V6.0 Directory
+C:\Program Files\KiCad\6.0\share\kicad\3dmodels\
+and
+V7.0 Directory
+C:\Program Files\KiCad\7.0\share\kicad\3dmodels\
+
+==========
+
+KiCad Neutrik Jack Footprint Directories:
+
+V6.0 Directory
+C:\Program Files\KiCad\6.0\share\kicad\footprints\Connector_Audio.pretty\
+V7.0 Directory
+C:\Program Files\KiCad\7.0\share\kicad\footprints\Connector_Audio.pretty\
+
+USE THESE FOOTPRINTS FOR THE 3D MODELS
+
+NEUTRIKJK.stp
+NEUTRIKJK.wrl
+1/4" Monaural Jack Footprint File:
+Jack_6.35mm_Neutrik_NMJ4HCD2_Horizontal.kicad_mod
+----------
+NEUTRIKJKST.stp
+NEUTRIKJKST.wrl
+1/4" Stereo Jack Footprint File:
+Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal.kicad_mod
+
+TO INSERT 3D MODELS GOTO ---->
+(*) C:\Program Files\KiCad\6.0\share\kicad\3dmodels\ Audio_Extra.3dshapes\
+(*) C:\Program Files\KiCad\7.0\share\kicad\3dmodels\ Audio_Extra.3dshapes\
+
+==========
