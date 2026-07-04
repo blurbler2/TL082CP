@@ -1,4 +1,4 @@
-Warning: Width correction constrained.  The width correction value must be in the range of [0.000001 mm; -0.000002 mm] for the current design rules.
+Info: Done.
 Plotted to '/Users/blurbler/TL082CP/kicad/TL082CP/gerber/TL082CP-F_Cu.gbr'.
 Plotted to '/Users/blurbler/TL082CP/kicad/TL082CP/gerber/TL082CP-B_Cu.gbr'.
 Plotted to '/Users/blurbler/TL082CP/kicad/TL082CP/gerber/TL082CP-F_Paste.gbr'.
@@ -9,5 +9,5 @@ Plotted to '/Users/blurbler/TL082CP/kicad/TL082CP/gerber/TL082CP-F_Mask.gbr'.
 Plotted to '/Users/blurbler/TL082CP/kicad/TL082CP/gerber/TL082CP-B_Mask.gbr'.
 Plotted to '/Users/blurbler/TL082CP/kicad/TL082CP/gerber/TL082CP-Edge_Cuts.gbr'.
 Created Gerber job file '/Users/blurbler/TL082CP/kicad/TL082CP/gerber/TL082CP-job.gbrjob'.
-Info: Done.
+Warning: Width correction constrained.  The width correction value must be in the range of [0.000001 mm; -0.000002 mm] for the current design rules.
 Info: Done.
