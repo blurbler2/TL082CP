@@ -51,14 +51,16 @@ AUDIO-SIGNALWEG:
        │
        │
     ┌──┴──┐
-    │ J1  │  Neutrik NMJ4HCD2 (6.35mm Mono-Jack)
+    │ J1  │  PJ-102A (6.35mm Mono-Jack)
     │ IN  │
     └──┬──┘
        │
-       ├──── R3 (1MΩ) ──── GND  (Pull-down für hochohmige Pickups)
+       ├── C1 (10µF) ────┬──── TL082 Pin 3 (Non-inv. Input A)
+       │                  │
+       │              R3 (1MΩ)
+       │                  │
+       │                 GND (Bias-Referenz)
        │
-       └──── C1 (10µF) ────┬──── TL082 Pin 3 (Non-inv. Input A)
-                             │
                         ┌────┴────┐
                         │  TL082  │
                         │  (U1)   │
@@ -71,14 +73,14 @@ AUDIO-SIGNALWEG:
        │                     │                     │
        │                  +12V                  -12V
        │
-       └──── VR1 (50kΩ) ────┬──── Pin 2 (Inv. Input A)
+       └──── VR1 (47kΩ) ────┬──── Pin 2 (Inv. Input A)
         (Gain Poti)          │
-                        R1 (1kΩ)
+                        R1 (4.7kΩ)
                              │
                             GND
        
        │
-       └──── C2 (10µF) ────┬──── J2 (Neutrik NMJ4HCD2)
+       └──── C2 (10µF) ────┬──── J2 (PJ-102A)
                               │
                            Verstärker/Amp
 
@@ -103,17 +105,17 @@ ENTKOPPLUNG:
 |-----|---------|------|-----------|--------------|-------|
 | U1 | TL082CP | Dual Op-Amp | `Package_DIP:DIP-8_W7.62mm` | `Amplifier_Operational:TL082` | 1 |
 | U2 | TMR 1-1222 | DC-DC 9-18V → ±12V | `Converter_DCDC:Traco_TMR1_SIP` | Benutzerdefiniert | 1 |
-| R1 | Widerstand | 1 kΩ | `Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal` | `Device:R` | 1 |
-| VR1 | Potentiometer | 50 kΩ | Benutzerdefiniert (Same Sky PT01-D130D-B503) | `Device:R_POT` | 1 |
+| R1 | Widerstand | 4.7 kΩ | `Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal` | `Device:R` | 1 |
+| VR1 | Potentiometer | 47 kΩ | Benutzerdefiniert (Same Sky PT01-D130D-B503) | `Device:R_POT` | 1 |
 | R3 | Widerstand | 1 MΩ | `Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal` | `Device:R` | 1 |
-| C1 | Elko | 10 µF | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` | `Device:CP` | 1 |
-| C2 | Elko | 10 µF | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` | `Device:CP` | 1 |
+| C1 | Elko | 10 µF | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` | `Device:CP` | 1 | AC-Kopplung Eingang (in Serie) |
+| C2 | Elko | 10 µF | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` | `Device:CP` | 1 | AC-Kopplung Ausgang (in Serie) |
 | C3 | Keramik | 100 nF | `Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm` | `Device:C` | 1 |
 | C4 | Keramik | 100 nF | `Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm` | `Device:C` | 1 |
 | C5 | Elko | 10 µF | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` | `Device:CP` | 1 |
 | C6 | Elko | 10 µF | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` | `Device:CP` | 1 |
-| J1 | Audio-Jack | 6.35mm Mono | `Connector_Audio:Neutrik_NMJ4HCD2` | `Connector_Audio:AudioJack2Switch` | 1 |
-| J2 | Audio-Jack | 6.35mm Mono | `Connector_Audio:Neutrik_NMJ4HCD2` | `Connector_Audio:AudioJack2Switch` | 1 |
+| J1 | Audio-Jack | 6.35mm Mono | PJ-102A (aus SnapEDA importiert, Same Sky) | `Connector_Audio:AudioJack2Switch` | 1 |
+| J2 | Audio-Jack | 6.35mm Mono | PJ-102A (aus SnapEDA importiert, Same Sky) | `Connector_Audio:AudioJack2Switch` | 1 |
 | J3 | DC-Jack | 5.5/2.1mm | `Connector:BarrelJack_Horizontal` | `Connector:Barrel_Jack` | 1 |
 
 ---
@@ -123,14 +125,22 @@ ENTKOPPLUNG:
 ```
 Gain = 1 + (VR1 / R1)
 
-VR1 einstellbar von 0 bis 50 kΩ:
-  VR1 = 0 Ω    → Gain = 1   (Unity)
-  VR1 = 9 kΩ   → Gain = 10  (20 dB)
-  VR1 = 50 kΩ  → Gain = 51  (~34 dB)
+VR1 einstellbar von 0 bis 47 kΩ:
+  VR1 = 0 Ω     → Gain = 1   (Unity)
+  VR1 = 4.7 kΩ  → Gain = 2   (6 dB)
+  VR1 = 23.5 kΩ → Gain = 6   (15.6 dB)
+  VR1 = 47 kΩ   → Gain = 11  (20.8 dB)
+
+Warum nicht Gain 51?
+  Passive Gitarre: 100-500 mV Peak (typisch 300 mV)
+  Bei Gain 51 und 300 mV Input: 15.3 V Output → Clipping bei ±12V Versorgung
+  Bei Gain 11 und 300 mV Input: 3.3 V Output → kein Clipping, mehr Reserve
+  
+  Gain 1-11 ist ein realistischer und gut beherrschbarer Bereich für einen Clean Preamp.
 
 Beispiel bei Gain = 10:
   Gitarre: 100 mVpp → Output: 1 Vpp
-  Gitarre: 200 mVpp → Output: 2 Vpp
+  Gitarre: 300 mVpp → Output: 3 Vpp
 ```
 
 ---
@@ -150,7 +160,7 @@ Beispiel bei Gain = 10:
 - TL082CP: `Package_DIP:DIP-8_W7.62mm`
 - TMR 1-1222: Benutzerdefinierter Footprint (SIP-6, 17 x 7.62 mm)
 - Potentiometer VR1: Same Sky PT01-D130D-B503 (aus SnapEDA importiert)
-- Audio-Jacks: `Connector_Audio:Neutrik_NMJ4HCD2` (benutzerdefiniert)
+- Audio-Jacks: PJ-102A (aus SnapEDA importiert, Same Sky)
 - Barrel-Jack: `Connector:BarrelJack_Horizontal`
 
 ---
@@ -158,7 +168,7 @@ Beispiel bei Gain = 10:
 ## Nächste Schritte
 
 1. ✅ TMR 1-1222 Symbol und Footprint erstellen
-2. ✅ Neutrik NMJ4HCD2 Footprint erstellen
+2. ✅ PJ-102A Footprint erstellen
 3. ✅ Schaltplan in KiCad zeichnen
 4. ✅ PCB Layout erstellen
 5. ✅ Gerber-Files exportieren

@@ -36,7 +36,7 @@
 | Potentiometer VR1 | Same Sky PT01-D130D-B503 (aus SnapEDA importiert) |
 | 10 µF Elkos | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` |
 | 100 nF | `Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm` |
-| NMJ4HCD2 | `Connector_Audio:Neutrik_NMJ4HCD2` (benutzerdefiniert) |
+| PJ-102A | PJ-102A (aus SnapEDA importiert, Same Sky) |
 | Barrel_Jack | `Connector:BarrelJack_Horizontal` |
 
 ### 1.3 LTSpice Modell
@@ -61,27 +61,38 @@ Diese Schaltung wurde gewählt, da sie die Hauptfunktionen des TL082CP demonstri
 ### 2.2 Schaltplan
 
 ```
-Gitarre ──→ J1 (NMJ4HCD2, Tip)
+Gitarre ──→ J1 (PJ-102A, Tip)
                │
-               ├── R3 (1MΩ) ──→ GND (Pull-down)
+               ├── C1 (10µF) ──┬──── TL082 Pin 3 (Non-inv. Input A)
+               │                │
+               │            R3 (1MΩ)
+               │                │
+               │               GND (Bias-Referenz)
                │
-               └── C1 (10µF) ──→ TL082 Pin 3 (Non-inv. Input A)
+               └─────────────────┘
                                      │
-                                     ├── R1 (1kΩ) ──→ GND
+                                     ├── R1 (4.7kΩ) ──→ GND
                                      │
-                                     └── VR1 (50kΩ Poti) ──→ TL082 Pin 1 (Output A)
+                                     └── VR1 (47kΩ Poti) ──→ TL082 Pin 1 (Output A)
                                                                 │
-                                                                └── C2 (10µF) ──→ J2 (NMJ4HCD2, Tip) ──→ Verstärker/Amp
+                                                                └── C2 (10µF) ──→ J2 (PJ-102A, Tip) ──→ Verstärker/Amp
 ```
 
 **Verstärkung:**
 ```
 Gain = 1 + (VR1 / R1)
-VR1 einstellbar von 0 bis 50 kΩ:
-  VR1 = 0 Ω    → Gain = 1   (Unity)
-  VR1 = 9 kΩ   → Gain = 10  (20 dB)
-  VR1 = 50 kΩ  → Gain = 51  (~34 dB)
+VR1 einstellbar von 0 bis 47 kΩ:
+  VR1 = 0 Ω     → Gain = 1   (Unity)
+  VR1 = 4.7 kΩ  → Gain = 2   (6 dB)
+  VR1 = 23.5 kΩ → Gain = 6   (15.6 dB)
+  VR1 = 47 kΩ   → Gain = 11  (20.8 dB)
 ```
+
+**Warum Gain 1-11 statt 1-51?**
+- Passive Gitarre liefert typisch 100-500 mV Peak (ca. 300 mV bei normalem Anschlag)
+- Bei Gain 51 und 300 mV Input: 15.3 V Output → Clipping bei ±12V Versorgung
+- Bei Gain 11 und 300 mV Input: 3.3 V Output → kein Clipping, mehr Reserve
+- Gain 1-11 ist ein realistischer und gut beherrschbarer Bereich für einen Clean Preamp
 
 ### 2.3 Stromversorgung
 
@@ -331,14 +342,14 @@ TL082CP_Abschlussarbeit.zip
 |---------|-------------|
 | U1 | TL082CP — Dual-Operationsverstärker im PDIP-8-Gehäuse |
 | U2 | Traco Power TMR 1-1222 — DC-DC-Wandler, 9-18V → ±12V, 1W, SIP-6 |
-| R1 | 1 kΩ (THT, 1/4 W) — Gain-Setzung (fest) |
-| VR1 | 50 kΩ Potentiometer (Same Sky PT01-D130D-B503) — einstellbare Verstärkung |
+| R1 | 4.7 kΩ (THT, 1/4 W) — Gain-Setzung (fest) |
+| VR1 | 47 kΩ Potentiometer (Same Sky PT01-D130D-B503) — einstellbare Verstärkung |
 | R3 | 1 MΩ (THT, 1/4 W) — Pull-down für hochohmige Gitarren-Pickups |
-| C1, C2 | 10 µF Elko (THT) — AC-Kopplung Ein-/Ausgang |
+| C1, C2 | 10 µF Elko (THT) — AC-Kopplung Ein-/Ausgang (in Serie) |
 | C3, C4 | 100 nF (THT) — Entkopplung V+/V- am TL082 |
 | C5, C6 | 10 µF (THT) — Pump-Kondensatoren für TMR 1-1222 |
-| J1 | Neutrik NMJ4HCD2 — 6.35mm Mono-Jack, switched, Panel-Mount (Input) |
-| J2 | Neutrik NMJ4HCD2 — 6.35mm Mono-Jack, switched, Panel-Mount (Output) |
+| J1 | PJ-102A — 6.35mm Mono-Jack (Same Sky, aus SnapEDA importiert) |
+| J2 | PJ-102A — 6.35mm Mono-Jack (Same Sky, aus SnapEDA importiert) |
 | J3 | Barrel_Jack 5.5/2.1mm — DC-Stromversorgung (9-18V) |
 
 ---
@@ -348,7 +359,7 @@ TL082CP_Abschlussarbeit.zip
 - TL082 Datenblatt: https://www.ti.com/product/TL082-N
 - TL082 Pinout & Applications: https://www.ariat-tech.com/blog/tl082-jfet-dual-op-amp-pinout,applications-and-alternatives.html
 - Traco Power TMR 1-1222: https://www.tracopower.com/int/model/tmr-1-1222
-- Neutrik NMJ4HCD2: https://www.neutrik.com/en/product/nmj4hcd2
+- PJ-102A Audio-Jack: https://www.snapeda.com/parts/PJ-102A/Same%20Sky/view-part/
 - Elektronik-Kompendium OpAmp: https://www.elektronik-kompendium.de/public/schaerer/opa1.htm
 
 ---
