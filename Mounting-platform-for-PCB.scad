@@ -1,20 +1,17 @@
 // PCB Trägerplatte - TL082CP Audio Preamp
-// Angepasst an PCB: 88.63 x 75.36 mm, 4x Bohrung 4.5 mm
+// Bolzen exakt auf PCB-Montagebohrungen positioniert
 
 $fn=70;
 
-pcb_width  = 88.63;
-pcb_length = 75.36;
-
-// Trägerplatte etwas größer als PCB
-width   = 94;
-length  = 81;
+// Platte = PCB-Größe
+width   = 88.63;
+length  = 75.36;
 thickness = 6;
 
-// PCB-Montagelöcher (M4, 4.5 mm)
+// PCB-Montagelöcher (4.5 mm)
 mount_drill = 4.5;
 
-// Schraubbolzen-Durchmesser
+// Schraubbolzen-Außendurchmesser
 bolt_d = 8;
 
 // Positionen der PCB-Montagelöcher (relativ zur PCB-Ecke)
@@ -22,16 +19,6 @@ hole_x1 = 6.6;
 hole_x2 = 80.3;
 hole_y1 = 9.5;
 hole_y2 = 67.9;
-
-// Plattenrand-Abstand (zentriert PCB auf Platte)
-offset_x = (width  - pcb_width)  / 2;
-offset_y = (length - pcb_length) / 2;
-
-// Bolzenpositionen auf der Trägerplatte
-bx1 = offset_x + hole_x1;
-bx2 = offset_x + hole_x2;
-by1 = offset_y + hole_y1;
-by2 = offset_y + hole_y2;
 
 difference () {
     // Basisplatte
@@ -56,7 +43,7 @@ module bolt(x, y) {
     }
 }
 
-bolt(bx1, by1);
-bolt(bx2, by1);
-bolt(bx1, by2);
-bolt(bx2, by2);
+bolt(hole_x1, hole_y1);
+bolt(hole_x2, hole_y1);
+bolt(hole_x1, hole_y2);
+bolt(hole_x2, hole_y2);

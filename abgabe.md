@@ -336,10 +336,13 @@ Die simulierten Werte werden als Modell-Limitierungen akzeptiert und dokumentier
 
 ### 5.4 Mechanische Ausdrucke
 
-Vom PCB-Layout und vom Einzelbauteil (TL082CP-NOPB, Footprint `P8_TEX`) wurden maßstabsgetreue mechanische Ausdrucke erstellt:
+Maßstabsgetreue mechanische Ausdrucke (PDF, 1:1) zum Ausdrucken und Prüfen:
 
-- **PCB:** 1:1 und 2:1 (PDF/PNG) in `mechanisch/`
-- **Einzelbauteil (TL082CP-NOPB):** 1:1 und 2:1 (PDF/PNG) in `mechanisch/`
+- **[PCB-Layout 1:1](mechanisch/TL082CP_PCB_1to1.pdf)** – 88,63 × 75,36 mm (auch [2:1](mechanisch/TL082CP_PCB_2to1.pdf))
+- **[Einzelbauteil (TL082CP-NOPB) 1:1](mechanisch/TL082CP-NOPB_1to1.pdf)** – Footprint `P8_TEX` (auch [2:1](mechanisch/TL082CP-NOPB_2to1.pdf))
+- **[Trägerplatte 1:1](mechanisch/Traegerplatte_1zu1.pdf)** – OpenSCAD-Halterung
+
+Alle PDFs liegen im Ordner `mechanisch/`.
 
 ---
 

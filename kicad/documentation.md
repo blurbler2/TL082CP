@@ -328,8 +328,8 @@ TL082CP_Abschlussarbeit.zip
 │   ├── ac_analysis.asc
 │   └── simulation_results.md
 ├── mechanical/
-│   ├── TL082CP_1to1.pdf
-│   └── TL082CP_2to1.pdf
+│   ├── TL082CP_PCB_1to1.pdf
+│   └── TL082CP_PCB_2to1.pdf
 ├── openscad/
 │   ├── Mounting-platform-for-PCB.scad
 │   └── Mounting-platform-for-PCB.stl
