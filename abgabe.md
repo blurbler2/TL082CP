@@ -334,7 +334,16 @@ Die simulierten Werte werden als Modell-Limitierungen akzeptiert und dokumentier
 
 - `kicad/TL082CP/TL082CP.kicad_pcb` - PCB Layout
 
+### 5.4 Mechanische Ausdrucke
+
+Vom PCB-Layout und vom Einzelbauteil (TL082CP-NOPB, Footprint `P8_TEX`) wurden maßstabsgetreue mechanische Ausdrucke erstellt:
+
+- **PCB:** 1:1 und 2:1 (PDF/PNG) in `mechanisch/`
+- **Einzelbauteil (TL082CP-NOPB):** 1:1 und 2:1 (PDF/PNG) in `mechanisch/`
+
 ---
+
+
 
 ## 6. Bauteil-Datenbank
 
