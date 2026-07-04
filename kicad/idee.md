@@ -73,7 +73,7 @@ AUDIO-SIGNALWEG:
        │                     │                     │
        │                  +12V                  -12V
        │
-       └──── VR1 (47kΩ) ────┬──── Pin 2 (Inv. Input A)
+       └──── VR1 (50kΩ) ────┬──── Pin 2 (Inv. Input A)
         (Gain Poti)          │
                         R1 (4.7kΩ)
                              │
@@ -106,7 +106,7 @@ ENTKOPPLUNG:
 | U1 | TL082CP | Dual Op-Amp | `Package_DIP:DIP-8_W7.62mm` | `Amplifier_Operational:TL082` | 1 |
 | U2 | TMR 1-1222 | DC-DC 9-18V → ±12V | `Converter_DCDC:Traco_TMR1_SIP` | Benutzerdefiniert | 1 |
 | R1 | Widerstand | 4.7 kΩ | `Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal` | `Device:R` | 1 |
-| VR1 | Potentiometer | 47 kΩ | Benutzerdefiniert (Same Sky PT01-D130D-B503) | `Device:R_POT` | 1 |
+| VR1 | Potentiometer | 50 kΩ | Benutzerdefiniert (Same Sky PT01-D130D-B503) | `Device:R_POT` | 1 |
 | R3 | Widerstand | 1 MΩ | `Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal` | `Device:R` | 1 |
 | C1 | Elko | 10 µF | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` | `Device:CP` | 1 | AC-Kopplung Eingang (in Serie) |
 | C2 | Elko | 10 µF | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` | `Device:CP` | 1 | AC-Kopplung Ausgang (in Serie) |
@@ -125,18 +125,20 @@ ENTKOPPLUNG:
 ```
 Gain = 1 + (VR1 / R1)
 
-VR1 einstellbar von 0 bis 47 kΩ:
-  VR1 = 0 Ω     → Gain = 1   (Unity)
-  VR1 = 4.7 kΩ  → Gain = 2   (6 dB)
-  VR1 = 23.5 kΩ → Gain = 6   (15.6 dB)
-  VR1 = 47 kΩ   → Gain = 11  (20.8 dB)
+VR1 einstellbar von 0 bis 50 kΩ:
+  VR1 = 0 Ω     → Gain = 1    (0 dB, Unity)
+  VR1 = 4.7 kΩ  → Gain = 2    (6 dB)
+  VR1 = 25 kΩ   → Gain = 6.3  (16 dB)
+  VR1 = 50 kΩ   → Gain = 11.6 (21.3 dB)
 
-Warum nicht Gain 51?
+Silkscreen-Beschriftung: "GAIN  0 dB - 21 dB"  (oder "1× - 12×")
+
+Warum nicht Gain 1-51?
   Passive Gitarre: 100-500 mV Peak (typisch 300 mV)
   Bei Gain 51 und 300 mV Input: 15.3 V Output → Clipping bei ±12V Versorgung
-  Bei Gain 11 und 300 mV Input: 3.3 V Output → kein Clipping, mehr Reserve
+  Bei Gain 11.6 und 300 mV Input: 3.5 V Output → kein Clipping, mehr Reserve
   
-  Gain 1-11 ist ein realistischer und gut beherrschbarer Bereich für einen Clean Preamp.
+  Gain 1-11.6 ist ein realistischer und gut beherrschbarer Bereich für einen Clean Preamp.
 
 Beispiel bei Gain = 10:
   Gitarre: 100 mVpp → Output: 1 Vpp

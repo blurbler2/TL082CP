@@ -73,7 +73,7 @@ Gitarre ──→ J1 (PJ-102A, Tip)
                                      │
                                      ├── R1 (4.7kΩ) ──→ GND
                                      │
-                                     └── VR1 (47kΩ Poti) ──→ TL082 Pin 1 (Output A)
+                                     └── VR1 (50kΩ Poti) ──→ TL082 Pin 1 (Output A)
                                                                 │
                                                                 └── C2 (10µF) ──→ J2 (PJ-102A, Tip) ──→ Verstärker/Amp
 ```
@@ -81,18 +81,20 @@ Gitarre ──→ J1 (PJ-102A, Tip)
 **Verstärkung:**
 ```
 Gain = 1 + (VR1 / R1)
-VR1 einstellbar von 0 bis 47 kΩ:
-  VR1 = 0 Ω     → Gain = 1   (Unity)
-  VR1 = 4.7 kΩ  → Gain = 2   (6 dB)
-  VR1 = 23.5 kΩ → Gain = 6   (15.6 dB)
-  VR1 = 47 kΩ   → Gain = 11  (20.8 dB)
+VR1 einstellbar von 0 bis 50 kΩ:
+  VR1 = 0 Ω     → Gain = 1    (0 dB, Unity)
+  VR1 = 4.7 kΩ  → Gain = 2    (6 dB)
+  VR1 = 25 kΩ   → Gain = 6.3  (16 dB)
+  VR1 = 50 kΩ   → Gain = 11.6 (21.3 dB)
 ```
 
-**Warum Gain 1-11 statt 1-51?**
+**Silkscreen-Beschriftung:** "GAIN  0 dB – 21 dB" (oder "1× – 12×")
+
+**Warum Gain 1-11.6 statt 1-51?**
 - Passive Gitarre liefert typisch 100-500 mV Peak (ca. 300 mV bei normalem Anschlag)
 - Bei Gain 51 und 300 mV Input: 15.3 V Output → Clipping bei ±12V Versorgung
-- Bei Gain 11 und 300 mV Input: 3.3 V Output → kein Clipping, mehr Reserve
-- Gain 1-11 ist ein realistischer und gut beherrschbarer Bereich für einen Clean Preamp
+- Bei Gain 11.6 und 300 mV Input: 3.5 V Output → kein Clipping, mehr Reserve
+- Gain 1-11.6 ist ein realistischer und gut beherrschbarer Bereich für einen Clean Preamp
 
 ### 2.3 Stromversorgung
 
@@ -343,7 +345,7 @@ TL082CP_Abschlussarbeit.zip
 | U1 | TL082CP — Dual-Operationsverstärker im PDIP-8-Gehäuse |
 | U2 | Traco Power TMR 1-1222 — DC-DC-Wandler, 9-18V → ±12V, 1W, SIP-6 |
 | R1 | 4.7 kΩ (THT, 1/4 W) — Gain-Setzung (fest) |
-| VR1 | 47 kΩ Potentiometer (Same Sky PT01-D130D-B503) — einstellbare Verstärkung |
+| VR1 | 50 kΩ Potentiometer (Same Sky PT01-D130D-B503) — einstellbare Verstärkung |
 | R3 | 1 MΩ (THT, 1/4 W) — Pull-down für hochohmige Gitarren-Pickups |
 | C1, C2 | 10 µF Elko (THT) — AC-Kopplung Ein-/Ausgang (in Serie) |
 | C3, C4 | 100 nF (THT) — Entkopplung V+/V- am TL082 |

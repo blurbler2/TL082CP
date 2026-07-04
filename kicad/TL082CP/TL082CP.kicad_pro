@@ -473,6 +473,13 @@
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
+      },
+      {
+        "name": "Signal",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25
       }
     ],
     "meta": {
@@ -598,7 +605,7 @@
     },
     "net_format_name": "",
     "page_layout_descr_file": "audio-vorverstaerker",
-    "plot_directory": "",
+    "plot_directory": "plots/",
     "space_save_all_events": true,
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",

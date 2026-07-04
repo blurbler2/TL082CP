@@ -1,15 +1,12 @@
-ERC report (2026-07-04T02:26:09+0200, Encoding UTF8)
+ERC report (2026-07-04T14:40:25+0200, Encoding UTF8)
 
 ***** Sheet /
-[footprint_link_issues]: Footprint 'P8_TEX' not found in library '1_own_TL082CP'.
+[lib_symbol_mismatch]: Symbol 'PJ-102A' doesn't match copy in library '1_own_PJ-102A'
     ; warning
-    @(6100 mils, 3250 mils): Symbol U2 [TL082]
+    @(4050 mils, 1650 mils): Symbol J3 [PJ-102A]
 [lib_symbol_issues]: The symbol library '1_own_TL082CP' was not found at '/Users/blurbler/TL082CP/blerta/kicad/ul_TL082CP-NOPB/KiCADv6/2026-07-03_18-03-43.kicad_sym'.
     ; warning
     @(6100 mils, 3250 mils): Symbol U2 [TL082]
-[footprint_link_issues]: Footprint 'TRIM_PT01-D130D-B503' not found in library '1_own_PT01-D130D-B503'.
-    ; warning
-    @(7300 mils, 2300 mils): Symbol R3 [PT01-D130D-B503]
 [lib_symbol_issues]: The symbol library '1_own_PT01-D130D-B503' was not found at '/Users/blurbler/TL082CP/blerta/kicad/PT01-D130D-B503/PT01-D130D-B503.kicad_sym'.
     ; warning
     @(7300 mils, 2300 mils): Symbol R3 [PT01-D130D-B503]
@@ -24,4 +21,4 @@ ERC report (2026-07-04T02:26:09+0200, Encoding UTF8)
 
 ***** Sheet /dual supply voltage/
 
- ** ERC messages: 6  Errors 0  Warnings 6
+ ** ERC messages: 5  Errors 0  Warnings 5

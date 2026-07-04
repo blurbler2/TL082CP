@@ -1883,7 +1883,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PJ-102A:CUI_PJ-102A"
+		(property "Footprint" "1_own_PJ-102A:CUI_PJ-102A"
 			(at 102.87 41.91 0)
 			(effects
 				(font

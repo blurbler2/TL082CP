@@ -1,16 +1,9 @@
 ** Drc report for TL082CP.kicad_pcb **
-** Created on 2026-07-04T02:06:21+0200 **
+** Created on 2026-07-04T14:31:09+0200 **
 
-** Found 1 DRC violations **
-[invalid_outline]: Board has malformed outline (not a closed shape)
-    Local override; error
-    @(108.4750 mm, 118.2440 mm): Segment of J4 on Edge.Cuts
+** Found 0 DRC violations **
 
-** Found 1 unconnected pads **
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(130.9770 mm, 87.9240 mm): Track [GND] on F.Cu, length 1.7395 mm
-    @(144.9070 mm, 93.1780 mm): Track [GND] on F.Cu, length 3.3740 mm
+** Found 0 unconnected pads **
 
 ** Found 0 Footprint errors **
 
