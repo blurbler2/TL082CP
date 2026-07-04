@@ -105,29 +105,65 @@ Barrel_Jack (9-18V DC) ──→ TMR 1-1222 ──→ ±12V für TL082
 
 **Ziel:** Maximale Anstiegsgeschwindigkeit der Ausgangsspannung messen
 
-**Schaltung:** Nicht-invertierender Verstärker (Gain=10)  
-**Eingang:** Rechtecksignal 1 kHz, 100 mVpp  
-**Messung:** Anstiegszeit am Ausgang
+**Schaltung:** Nicht-invertierender Buffer (Gain=1)  
+**Eingang:** Rechtecksignal ±10V, 50 kHz, 50% Duty Cycle  
+**Messung:** Anstiegszeit am Ausgang mit `.meas`-Direktiven
 
 **Ergebnis:**  
-Slew Rate = ΔV / Δt ≈ 16 V/µs
+Slew Rate = ΔV / Δt ≈ **13.4 V/µs**
+
+**Datenblatt-Vergleich:**
+- Simuliert: 13.4 V/µs
+- Datenblatt TL082CP: 20 V/µs typisch
+- Abweichung: 67% des Datenblattwerts
+
+**Modell-Limitierung:**  
+Das verwendete TI-Makromodell `TL082.301` wurde am 06.06.1989 erstellt (`CREATED USING PARTS RELEASE 4.01 ON 06/16/89 AT 13:08`). Die Diskrepanz ist auf Vereinfachungen im Makromodell zurückzuführen:
+- Vereinfachte Eingangsstufen-Modellierung
+- Idealisierte Stromquellen und Kapazitäten
+- Keine Berücksichtigung moderner Fertigungstoleranzen
 
 **Reflexion:**  
-Die gemessene Slew Rate entspricht dem Datenblattwert. Dies bestätigt, dass das LTSpice-Modell das dynamische Verhalten des TL082 korrekt abbildet.
+Trotz der Abweichung bildet das Modell das grundlegende dynamische Verhalten korrekt ab:
+- Symmetrische Slew Rate für Anstieg/Abfall
+- Konstante Slew Rate bei großen Differenzspannungen
+- Reduzierte Slew Rate bei kleinen Differenzspannungen (lineare Region)
 
 ### 3.3 Simulation 2: Input Offset Voltage
 
 **Ziel:** Gleichspannungsfehler am Eingang messen
 
-**Schaltung:** Spannungsfolger (Gain=1)  
-**Eingang:** 0 V (Kurzschluss)  
-**Messung:** DC-Spannung am Ausgang
+**Schaltung:** Invertierender Verstärker (Gain=-1000)  
+**Eingang:** 0 V DC  
+**Messung:** DC-Arbeitspunkt mit `.op`-Analyse
 
 **Ergebnis:**  
-V_offset ≈ 1-3 mV
+V_offset ≈ **11 µV** (rein numerischer Artefakt)
 
-**Reflexion:**  
-Der Offset liegt im erwarteten Bereich (Datenblatt: typ. 1 mV, max. 10 mV). Das Modell bildet den DC-Fehler korrekt ab.
+**Datenblatt-Vergleich:**
+- Simuliert: 11 µV
+- Datenblatt TL082CP: 3-15 mV (typisch-max)
+- Abweichung: Faktor 300-1000
+
+**Modell-Limitierung:**  
+Das TI-Makromodell `TL082.301` enthält **keine Eingangs-Offsetspannung** modelliert:
+- Keine `VOS`-Spannungsquelle am Eingang
+- Keine Mismatch-Parameter für JFETs (J1, J2)
+- Keine Bias-Strom-Streuung
+- Alle JFETs sind ideal symmetrisch (gleiche VTO, BETA)
+
+Die gemessenen 11 µV sind **Floating-Point-Rundungsfehler** des SPICE-Solvers, kein physikalischer Offset.
+
+**Lösung für realistische Simulation:**  
+Externe Vos-Quelle manuell hinzufügen (bereits in `real-input-0V-measure-dc-point-test-input-offset-voltage-tl802-op-amp.asc` implementiert):
+- Vos = 5 mV → Vout = -5.005 V (linear)
+- Vos = 13.3 mV → Vout = -13.35 V (Sättigung)
+
+**Empfehlung:**  
+Für Offset-Analysen immer:
+1. Externe Vos-Quelle verwenden, ODER
+2. Vollständiges Hersteller-Modell (TI PSpice) mit `.param Vos`, ODER
+3. Monte-Carlo-Analyse mit Mismatch-Parametern
 
 ### 3.4 Simulation 3: Frequenzgang (AC-Analyse)
 
@@ -182,12 +218,37 @@ Gewählt für Frequenzgang, da sie das Verhalten über einen weiten Frequenzbere
 
 ### 5.2 Reflexion der Ergebnisse
 
-Die Simulationen zeigen, dass das TL082-Modell die wichtigsten Parameter korrekt abbildet:
-- Slew Rate: 16 V/µs (Datenblatt: 16 V/µs typ.)
-- Offset: 1-3 mV (Datenblatt: 1 mV typ., 10 mV max.)
-- Bandbreite: 4 MHz (Datenblatt: 4 MHz typ.)
+Die Simulationen zeigen die Stärken und Limitierungen des TI-Makromodells `TL082.301`:
 
-Die Abweichungen liegen im tolerierten Bereich und bestätigen die Eignung des Modells für weitere Schaltungssimulationen.
+| Parameter | Simuliert | Datenblatt | Modell-Qualität |
+|-----------|-----------|------------|-----------------|
+| Slew Rate | 13.4 V/µs | 20 V/µs | ⚠️ 67% (akzeptabel für Funktionsnachweis) |
+| Input Offset | 11 µV | 3-15 mV | ❌ Nicht modelliert (nur mit externer Quelle) |
+| Verstärkung | ✓ korrekt | - | ✓ Gut |
+| Bandbreite | ✓ korrekt | 4 MHz | ✓ Gut |
+| Eingangsimpedanz | ✓ korrekt | hoch (JFET) | ✓ Gut |
+
+**Stärken des Modells:**
+- Korrekte Verstärkungscharakteristik
+- Realistische Bandbreite
+- Gutes dynamisches Verhalten (Slew Rate innerhalb 67% des Datenblatts)
+- Symmetrisches Verhalten für Anstieg/Abfall
+
+**Limitierungen des Modells:**
+- Slew Rate unterschätzt (13.4 vs. 20 V/µs) - auf vereinfachte Modellierung zurückzuführen
+- Input Offset nicht modelliert (11 µV vs. 3-15 mV) - keine Mismatch-Parameter vorhanden
+- Kein Rauschmodell vorhanden
+- Modell von 1989, keine Berücksichtigung moderner Fertigungstoleranzen
+
+**Fazit:**  
+Das Modell ist geeignet für:
+- ✅ Funktionsnachweis (Verstärkung, Filter, etc.)
+- ✅ Frequenzgang-Analyse (AC-Analyse)
+- ✅ Dynamisches Verhalten (Slew Rate, Transient)
+- ❌ Offset-Analyse (nur mit externer Vos-Quelle)
+- ❌ Rausch-Analyse (kein Rauschmodell)
+
+Für die Abgabe werden die simulierten Werte als Modell-Limitierungen akzeptiert und dokumentiert. Die Diskrepanzen sind auf das Alter und die Vereinfachungen des Makromodells zurückzuführen, nicht auf Fehler in der Schaltung oder Simulation.
 
 ---
 

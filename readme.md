@@ -83,6 +83,14 @@ TL082CP/
 └── readme.md                       # Diese Datei
 ```
 
+## Preview
+
+### PCB Layout
+<img src="docs/pcb.png" alt="PCB Layout" width="50%">
+
+### Footprint
+<img src="docs/footprint.png" alt="Footprint" width="50%">
+
 ## Inhalt
 
 | Datei | Beschreibung |
