@@ -103,23 +103,23 @@ TL082CP/
 
 ## MD → PDF konvertieren
 
-Die Dokumentation (`kicad/documentation.md`) lässt sich mit **Pandoc + XeLaTeX** in ein druckbares PDF umwandeln.
+Die Dokumentation (`abgabe.md`) lässt sich mit **Pandoc + XeLaTeX** in ein druckbares PDF umwandeln.
 
 ### Voraussetzungen
 
 - **Pandoc** installieren: `brew install pandoc` (macOS) bzw. `apt install pandoc` (Linux) bzw. https://pandoc.org
 - **XeLaTeX** (TeX Live oder MiKTeX) installieren
 
-### Beispiel: `documentation.md` → PDF
+### Beispiel: `abgabe.md` → PDF
 
 ```bash
-pandoc kicad/documentation.md \
+pandoc abgabe.md \
   --pdf-engine=xelatex \
   -V lang=de \
   -V geometry:margin=2.5cm \
   -V fontsize=11pt \
   -V colorlinks=true \
-  -o documentation.pdf
+  -o abgabe.pdf
 ```
 
 ### Hinweise

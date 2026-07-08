@@ -1,8 +1,14 @@
-# TL082CP Audio-Vorverstärker
+# TL082CP Bauteil-Datenbank
+LT Spice Simulationen und KiCAD Projekt: Audio-Vorverstärker
+
 ## Abschlussarbeit LV CAE SS2026 - AE27
 
-**Bauteil:** TL082CP (Dual JFET Operational Amplifier)  
+---
+
+**Bauteil:** TL082CP (Dual JFET Operational Amplifier) 
+
 **Bauform:** PDIP-8 (Through-Hole)  
+
 **Anwendung:** Nicht-invertierender Audio-Vorverstärker ("Clean" Preamp) mit einstellbarer Verstärkung
 
 ---
@@ -48,11 +54,12 @@ Der TL082CP eignet sich aufgrund seiner Eigenschaften ideal für Audio-Anwendung
 **Hinweis zu simulierten vs. Datenblatt-Eigenschaften:**
 
 **Direkt nachgewiesen durch Simulationen:**
+
 - Slew Rate (Transient-Analyse)
 - Input Offset Voltage (DC-Analyse)
-- Frequenzgang/Verstärkung (AC-Analyse)
 
 **Aus Datenblatt (nicht explizit simuliert):**
+
 - Hohe Eingangsimpedanz (JFET-Eingangsstufe) - typisch >10¹² Ω
 - Geringes Rauschen - typisch 25 nV/√Hz
 - Hoher CMRR - typisch 86 dB
@@ -76,8 +83,9 @@ Die Verstärkung (V) der Schaltung wird mit folgender Formel berechnet:
 $$V = 1 + \frac{R_2}{R_1}$$
 
 Dabei ist:
-- **R₂** der Gegenkopplungswiderstand zwischen Ausgang und invertierendem Eingang (Potentiometer VR1 = 0-50 kΩ)
-- **R₁** der Widerstand vom invertierenden Eingang nach Masse (R1 = 4.7 kΩ)
+
+- **$R_2$** der Gegenkopplungswiderstand zwischen Ausgang und invertierendem Eingang (Potentiometer VR1 = 0-50 kΩ)
+- **$R_1$** der Widerstand vom invertierenden Eingang nach Masse (R1 = 4.7 kΩ)
 
 ### 2.2 Eingangsimpedanz und Bias-Widerstand
 
@@ -244,15 +252,19 @@ Trotz der Abweichung bildet das Modell das grundlegende dynamische Verhalten kor
 **Messung:** DC-Arbeitspunkt mit `.op`-Analyse
 
 **Ergebnis:**  
+
 V_offset ≈ **11 µV** (rein numerischer Artefakt)
 
 **Datenblatt-Vergleich:**
+
 - Simuliert: 11 µV
 - Datenblatt TL082CP: 3-15 mV (typisch-max)
 - Abweichung: Faktor 300-1000
 
 **Modell-Limitierung:**  
+
 Das TI-Makromodell `TL082.301` enthält **keine Eingangs-Offsetspannung** modelliert:
+
 - Keine `VOS`-Spannungsquelle am Eingang
 - Keine Mismatch-Parameter für JFETs (J1, J2)
 - Keine Bias-Strom-Streuung
@@ -262,16 +274,20 @@ Die gemessenen 11 µV sind **Floating-Point-Rundungsfehler** des SPICE-Solvers, 
 
 **Lösung für realistische Simulation:**  
 Externe Vos-Quelle manuell hinzufügen (bereits in `real-input-0V-measure-dc-point-test-input-offset-voltage-tl802-op-amp.asc` implementiert):
+
 - Vos = 5 mV → Vout = -5.005 V (linear)
 - Vos = 13.3 mV → Vout = -13.35 V (Sättigung)
 
 **Empfehlung:**  
+
 Für Offset-Analysen immer:
+
 1. Externe Vos-Quelle verwenden, ODER
 2. Vollständiges Hersteller-Modell (TI PSpice) mit `.param Vos`, ODER
 3. Monte-Carlo-Analyse mit Mismatch-Parametern
 
 **Simulationsdateien:**
+
 - `ltspice/ltspice-simulation-2-input-offset-voltage/non-inverting-test-input-offset-voltage-tl802-op-amp.asc`
 - `ltspice/ltspice-simulation-2-input-offset-voltage/simulation-2-input-offset-voltage.md`
 
@@ -285,17 +301,20 @@ Für Offset-Analysen immer:
 | Bandbreite | ✓ korrekt | 4 MHz | ✓ Gut |
 
 **Nicht direkt simuliert (aus Datenblatt):**
+
 - Eingangsimpedanz: >10¹² Ω (JFET-Eingang)
 - Rauschen: 25 nV/√Hz
 - CMRR: 86 dB
 
 **Fazit:**  
 Das TI-Makromodell `TL082.301` ist geeignet für:
+
 - Funktionsnachweis (Verstärkung, Filter, etc.)
 - Frequenzgang-Analyse (AC-Analyse)
 - Dynamisches Verhalten (Slew Rate, Transient)
 
 und nicht für:
+
 - Offset-Analyse (nur mit externer Vos-Quelle)
 - Rausch-Analyse (kein Rauschmodell)
 - Eingangsimpedanz-Messung (nicht simuliert)
@@ -412,10 +431,12 @@ Das Projekt "TL082CP Audio-Vorverstärker" wurde erfolgreich abgeschlossen:
 ### 7.2 Nachgewiesene Funktionen
 
 **Durch Simulationen direkt nachgewiesen:**
+
 - Hohe Slew Rate (13.4 V/µs simuliert, 20 V/µs Datenblatt)
 - Geringer Input Offset (11 µV simuliert, 3-15 mV Datenblatt)
 
-** Aus Datenblatt (nicht explizit simuliert):**
+**Aus Datenblatt (nicht explizit simuliert):**
+
 - Hohe Eingangsimpedanz (JFET-Eingang) - typisch >10¹² Ω
 - Geringes Rauschen - typisch 25 nV/√Hz
 - Hoher CMRR - typisch 86 dB
@@ -435,9 +456,3 @@ Das TI-Makromodell `TL082.301` (1989) ist für Funktionsnachweise und Frequenzga
 - Traco Power TMR 1-1222: https://www.tracopower.com/int/model/tmr-1-1222
 - PJ-102A Audio-Jack: https://www.snapeda.com/parts/PJ-102A/Same%20Sky/view-part/
 - Same Sky PT01-D130D-B503: https://www.snapeda.com/parts/PT01-D130D-B503/Same%20Sky/view-part/
-
----
-
-**Matrikelnummer:** [einzutragen]  
-**Name:** [einzutragen]  
-**Datum:** 04.07.2026

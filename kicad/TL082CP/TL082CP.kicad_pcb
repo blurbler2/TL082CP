@@ -1888,6 +1888,17 @@
 			(uuid "eb861478-7473-455d-903c-6810167c216d")
 		)
 		(embedded_fonts no)
+		(model "/Users/blurbler/TL082CP/kicad/ul_TL082CP-NOPB/P0008A.stp"
+			(offset
+				(xyz 3.5 -4 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -0 -0)
+			)
+		)
 	)
 	(footprint "Converter_DCDC:Converter_DCDC_TRACO_TMR-1-xxxx_Dual_THT"
 		(layer "F.Cu")
@@ -2789,7 +2800,7 @@
 			(uuid "b2efc104-f699-4cdf-a66a-ef6166904357")
 		)
 		(embedded_fonts no)
-		(model "/Users/blurbler/TL082CP/blerta/kicad/PT01-D130D-B503/PT01-D130D-B503.step"
+		(model "/Users/blurbler/TL082CP/kicad/PT01-D130D-B503/PT01-D130D-B503.step"
 			(offset
 				(xyz 0 -0.5 2.5)
 			)
