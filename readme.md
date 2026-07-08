@@ -126,6 +126,41 @@ pandoc abgabe.md \
 
 - Für **deutsche Sonderzeichen / Umlaute** ist XeLaTeX in Kombination mit `-V lang=de` empfohlen.
 
+## KiCad — Ground Plane (Massefläche) erstellen
+
+Eine Massefläche muss auf einem **Kupfer-Layer** erstellt werden, nicht auf `User.1`.
+
+### Schritte
+
+1. **Zone löschen** — Falls eine Zone auf `User.1` existiert: Zone auswählen → `Delete`
+
+2. **Neue Zone auf B.Cu erstellen**
+   - `Place → Zone` (Shortcut `P Z`)
+   - **WICHTIG:** In der Layer-Auswahl unten links → **`B.Cu`** wählen
+   - Im Dialog:
+     - `Net:` → **`GND`** auswählen
+     - `Zone connection:` → `Thermal Relief` (empfohlen)
+
+3. **Zone zeichnen**
+   - Umrandung um die gesamte PCB ziehen (entlang des Board-Randes)
+   - Rechtsklick → `Fill Zone` oder `B` drücken
+
+4. **Alle Netze neu zeichnen**
+   - `Tools → Rebuild All Zones` oder `Shift+B`
+
+5. **DRC prüfen**
+   - `Tools → Design Rule Check` → `Start` — keine GND-Fehler sollte angezeigt werden
+
+6. ** Gerber neu exportieren**
+   - `File → Fabrication Outputs → Gerber` — Layer `B.Cu` muss enthalten sein
+   - `File → Fabrication Outputs → Drill Files` — Bohr-Dateien aktualisieren
+
+### Warum nicht `User.1`?
+
+`User.1` ist eine Dokumentationsebene — Flächen darauf sind **nur optisch sichtbar**, elektrisch haben sie keine Funktion. Die Ground Plane muss auf `B.Cu` (oder `F.Cu`) liegen, damit sie tatsächlich mit dem GND-Netz verbunden ist.
+
+---
+
 ## Abgabe
 
 ZIP-File mit allen geforderten Unterlagen, Moodle-Kurs "CUE SS2026 – AE27", bis spätestens **05.07.2026, 23:55 Uhr**.

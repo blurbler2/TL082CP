@@ -3,10 +3,10 @@
 
 $fn=70;
 
-// Platte = PCB-Größe
+// Platte = PCB-Größe (aus Edge_Cuts Gerber)
 width   = 88.63;
 length  = 75.36;
-thickness = 6;
+thickness=6;
 
 // PCB-Montagelöcher (4.5 mm)
 mount_drill = 4.5;
