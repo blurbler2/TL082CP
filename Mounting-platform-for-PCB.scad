@@ -14,11 +14,11 @@ mount_drill = 4.5;
 // Schraubbolzen-Außendurchmesser
 bolt_d = 8;
 
-// Positionen der PCB-Montagelöcher (relativ zur PCB-Ecke)
-hole_x1 = 6.6;
-hole_x2 = 80.3;
-hole_y1 = 9.5;
-hole_y2 = 67.9;
+// Positionen der PCB-Montagelöcher (relativ zur PCB-Ecke, aus NPTH-drl)
+hole_x1 = 6.385;
+hole_x2 = 82.385;
+hole_y1 = 6.524;
+hole_y2 = 68.524;
 
 difference () {
     // Basisplatte
