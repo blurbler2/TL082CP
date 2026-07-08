@@ -67,3 +67,17 @@ Bei einer DC-Analyse bzw. Arbeitspunktanalyse berechnet LTspice den stationären
 
 
 Wenn du z. B. die Slew Rate eines OPV messen willst, brauchst du .tran, weil du die Bewegung des Ausgangssignals über die Zeit sehen willst.23 Wenn du dagegen den Input Offset bestimmen willst, ist .op sinnvoll, weil du nur den statischen Ausgangswert bei (V_{in}=0) brauchst.13
+
+
+
+# kicad
+
+Bohrlöcher 
+oben: 
+links: x=101mm, y=60mm 
+rechts: x=177mm, y=60mm
+
+unten: 
+links: x=101mm, y=122mm 
+rechts: x=177mm, y=122mm  
+
