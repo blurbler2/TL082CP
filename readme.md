@@ -161,6 +161,40 @@ Eine Massefläche muss auf einem **Kupfer-Layer** erstellt werden, nicht auf `Us
 
 ---
 
+## Offene Probleme & Learnings
+
+Während der Arbeit an diesem Projekt wurden folgende Probleme identifiziert:
+
+### 1. Bohrlöcher nachträglich ausgerichtet
+
+Die Mounting-Holes im PCB wurden nach dem ersten Layout nachträglich neu positioniert:
+- **Neu:** oben (101, 60) / (177, 60), unten (101, 122) / (177, 122)
+- Koordinaten relativ zu Board-Origin (94.615, 53.162):
+  - Oben links: (6.385, 6.524)
+  - Oben rechts: (82.385, 6.524)
+  - Unten links: (6.385, 68.524)
+  - Unten rechts: (82.385, 68.524)
+- OpenSCAD-Halterung (`Mounting-platform-for-PCB.scad`) wurde entsprechend angepasst
+
+### 2. Drill Origin funktioniert nicht in Gerber-Export (GUI)
+
+Beim Exportieren der Bohr-Dateien über die KiCad GUI wurde `☑ Use drill file origin` gesetzt — dennoch wurden die Koordinaten als `absolute` (PCB-Koordinatensystem) exportiert, nicht relativ zur Drill Origin.
+
+- **Beobachtung:** Header der `.drl`-Datei zeigt `FORMAT={-:-/ absolute / metric / decimal}`
+- **Erwartung:** Koordinaten sollten relativ zur gesetzten Drill Origin sein
+- **Workaround:** Koordinaten werden weiterhin als Offset vom PCB-Origin interpretiert
+- **Offen:** CLI-Export (`--drill-origin plot`) wurde noch nicht getestet
+
+### 3. Ground Plane auf falschem Layer (User.1 statt B.Cu)
+
+Die Ground Plane Zone lag zunächst auf **`User.1`** — einer Dokumentationsebene, **nicht auf einem Kupfer-Layer**.
+
+- **Problem:** Flächen auf `User.1` sind nur optisch sichtbar, elektrisch keine Funktion
+- **Lösung:** Zone löschen und neu auf **`B.Cu`** mit Netz `GND` erstellen
+- Siehe Abschnitt "KiCad — Ground Plane erstellen" oben
+
+---
+
 ## Abgabe
 
 ZIP-File mit allen geforderten Unterlagen, Moodle-Kurs "CUE SS2026 – AE27", bis spätestens **05.07.2026, 23:55 Uhr**.
